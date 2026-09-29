@@ -1,0 +1,19 @@
+# Entornos virtuales y caché de Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Base de datos local (se crea sola al iniciar) y fotos subidas por usuarios
+database/*.db
+database/*.db-*
+database/*.bak
+media/*
+!media/pruebas/
+
+# Configuración local y archivos del sistema
+.env
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
