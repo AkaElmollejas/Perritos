@@ -1,0 +1,50 @@
+# Uso:  cp .env.example .env   &&   docker compose up --build
+services:
+  backend:                       # P1: FastAPI + SQLite
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      TZ: ${TZ:-America/Monterrey}
+    volumes:
+      - datos_db:/data/db        # base SQLite
+      - fotos:/data/media        # fotos subidas (fuera del código)
+
+  frontend:                      # P1: página estática
+    build: ./frontend
+
+  funcional:                     # P2: servicio Elixir (núcleo puro + cáscara)
+    build: ./funcional
+    environment:
+      BACKEND_URL: http://backend:8000   # opción B: lee los datos a través del backend
+      TZ: ${TZ:-America/Monterrey}
+    depends_on: [backend]
+    # sin "ports": solo le habla el proxy, por la red interna
+
+  proxy:                         # única entrada: / -> frontend, /api/ -> backend, /f/ -> elixir
+    image: nginx:1.27-alpine
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "${PUERTO_PROXY:-8080}:80"   # local: http://localhost:8080
+    depends_on: [frontend, backend, funcional]
+
+  tunel:                         # URL pública https (quick tunnel, sin cuenta)
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate --url http://proxy:80
+    depends_on: [proxy]
+
+  herramientas:                  # solo para correr mix (no arranca con "up")
+    image: elixir:1.18-alpine
+    profiles: ["herramientas"]
+    working_dir: /app
+    volumes:
+      - ./funcional:/app
+      - mix_cache:/root/.mix
+      - hex_cache:/root/.hex
+
+volumes:
+  datos_db:
+  fotos:
+  mix_cache:
+  hex_cache:
