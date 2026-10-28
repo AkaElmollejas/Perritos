@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #74b8f0;
+    color: white;
+    padding: 50px;
+    text-align: center;
+}
+
+h2{
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+}
+
+form {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, select, button, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #74b8f0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: #74b8f0;
+}
+button:hover{
+    background: #1e89e0;
+}
+
+/*boton de ingreso de archivo*/
+.custom-file {
+    background: #74b8f0;
+    color: white;
+    padding: 8px 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: -20px;
+    text-align: center;
+    margin-left:175px;
+}
+.custom-file:hover {
+    background: #1e89e0;
+}
+
+
+#map {
+    height: 300px;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+/* Subtítulo */
+.subtitulo {
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+/* Rejilla de tarjetas para perritos registrados */
+.tarjetas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.tarjeta-perro {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mini-foto {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.info-perro {
+    padding: 10px;
+}
+
+.info-perro h3 {
+    margin: 0 0 5px 0;
+    color: #1e89e0;
+}
+
+.info-perro p {
+    margin: 3px 0;
+    font-size: 0.85em;
+    color: #444;
+}
+
+/* Ajuste móvil para el botón de archivo */
+@media (max-width: 600px) {
+    .custom-file {
+        display: block;
+        margin: 10px auto;
+        width: 80%;
+    }
+}
+
+/* --- Ajustes añadidos --- */
+input[type="checkbox"] { width: auto; margin: 0 6px 0 0; }
+#coloresAdicionales label { display: inline-block; margin-right: 12px; font-weight: normal; }
+fieldset { border: 1px solid #ddd; border-radius: 8px; margin-top: 15px; }
+.navbar .nav-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 10px; }
+.navbar a, .navbar button {
+    width: auto; margin: 0; padding: 8px 14px; border-radius: 5px; border: none;
+    background: #74b8f0; color: white; text-decoration: none; font-size: 0.9em; cursor: pointer;
+}
+.navbar a:hover, .navbar button:hover { background: #1e89e0; }
+#mapaGeneral { height: 300px; border: 2px solid #ccc; border-radius: 8px; margin-bottom: 10px; }
+.info-dialog { max-width: 900px; width: 90%; border: none; border-radius: 8px; }
+.info-dialog::backdrop { background: rgba(0,0,0,0.5); }
+.dialog-close { width: auto; float: right; margin: 0; background: none; color: #333; font-size: 1.6em; }
+.dialog-close:hover { background: none; color: #1e89e0; }
+.file-name { text-align: center; font-size: 0.85em; color: #444; }
+footer { text-align: center; padding: 15px; color: #666; }
