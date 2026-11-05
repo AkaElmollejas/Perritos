@@ -1,0 +1,7 @@
+.git
+venv
+**/__pycache__
+database/*.db
+funcional/_build
+funcional/deps
+.env
